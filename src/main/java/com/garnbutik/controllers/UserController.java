@@ -38,14 +38,6 @@ public class UserController {
         return Response.created(uri).entity(userResponseBody).build();
     }
 
-//    @GET
-//    @Path("{id}")
-//    @Secured
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response getUser(@PathParam("id") Long id) {
-//        UserResponseBody userResponseBody = customObjectMapper.userToResponseUserDto(userService.getUserById(id));
-//        return Response.ok().entity(userResponseBody).build();
-//    }
     @GET
     @Path("{username}")
     @Secured
@@ -57,7 +49,7 @@ public class UserController {
 
     @PATCH
     @Path("{username}")
-    //@Secured
+    @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public Response patchUser(@PathParam("username") String id, String jsonPatch, @Context UriInfo uriInfo) {
         if (jsonPatch == null || jsonPatch.isEmpty()) {
