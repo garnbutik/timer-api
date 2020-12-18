@@ -82,7 +82,7 @@ public class UserService {
     public String authenticate(String username, String candidatePassword) {
         User user = repository.findUserByUsernameOrEmail(username);
         if (user == null || !PasswordUtils.checkPassword(candidatePassword, user.getPassword())) {
-            logger.info("Failed login attempt by: " + username);
+            logger.info("Failed login attempt by username: " + username);
             throw new LoginException("not authorized");
         }
         return tokenIssuer.issueToken(user);
