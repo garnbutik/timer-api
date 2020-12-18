@@ -9,11 +9,9 @@ import testConfig.WeldJUnit4Runner;
 
 import javax.inject.Inject;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.*;
+import java.text.MessageFormat;
 
-import static org.junit.Assert.*;
+import static io.restassured.RestAssured.*;
 
 @RunWith(WeldJUnit4Runner.class)
 public class ControllerTest {
@@ -21,29 +19,32 @@ public class ControllerTest {
     @Inject
     JwtTokenIssuer tokenIssuer;
 
+    private static final String TEST_USERNAME = "test";
+
     @Before
     public void setup() {
         RestAssured.baseURI = "http://localhost:8080/timer-api/api/";
     }
 
-
     @Test
     public void whenRequestWithAuthToken_thenOK(){
-        given().log().all().header("Authorization", "Bearer " + getTokenForUser("garnbutik"))
-                .when().request("GET", "users/garnbutik/")
+        String username = "test";
+        given().log().all().header("Authorization", "Bearer " + getTokenForTestUser())
+                .when().request("GET", MessageFormat.format("users/{0}/", TEST_USERNAME))
                 .then().statusCode(200);
     }
 
     @Test
-    public void whenRequestWithoutAuthToken_thenOK(){
+    public void whenRequestWithoutAuthToken_then401(){
+
         given().log().all()
-                .when().request("GET", "users/garnbutik/")
+                .when().request("GET", MessageFormat.format("users/{0}/", TEST_USERNAME))
                 .then().statusCode(401);
     }
 
-    private String getTokenForUser(String username) {
+    private String getTokenForTestUser() {
         User user = new User();
-        user.setUsername(username);
+        user.setUsername(ControllerTest.TEST_USERNAME);
         return tokenIssuer.issueToken(user);
     }
 }
