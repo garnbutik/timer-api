@@ -1,4 +1,4 @@
-package com.garnbutik.security;
+package testConfig;
 
 import org.jboss.weld.environment.se.Weld;
 import org.jboss.weld.environment.se.WeldContainer;

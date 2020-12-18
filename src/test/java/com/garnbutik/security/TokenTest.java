@@ -4,6 +4,7 @@ import com.garnbutik.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
+import testConfig.WeldJUnit4Runner;
 
 
 import javax.inject.Inject;
@@ -23,7 +24,6 @@ public class TokenTest {
     @Test
     public void tokenShouldBe152Chars(){
        String token = tokenIssuer.issueToken(createUserWithUsername());
-       logger.info(String.valueOf(token.length()));
        assertEquals(152, token.length());
     }
 
@@ -41,8 +41,7 @@ public class TokenTest {
 
     @Test(expected = BadRequestException.class)
     public void shouldThrowExceptionWhenUserDoesntHaveUsername(){
-        String token = tokenIssuer.issueToken(new User());
-
+        tokenIssuer.issueToken(new User());
     }
 
     private User createUserWithUsername(){
