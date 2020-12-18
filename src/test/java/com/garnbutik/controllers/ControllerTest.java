@@ -23,7 +23,7 @@ public class ControllerTest {
 
     @Before
     public void setup() {
-        RestAssured.baseURI = "http://localhost:8080/timer/api/";
+        RestAssured.baseURI = "http://localhost:8080/timer-api/api/";
     }
 
 
