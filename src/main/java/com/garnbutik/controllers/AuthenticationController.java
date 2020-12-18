@@ -26,7 +26,7 @@ public class AuthenticationController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response login(@Valid Credentials credentials) throws Exception {
+    public Response login(@Valid Credentials credentials) {
         String token = userService.authenticate(credentials.getUsername(), credentials.getPassword());
         LoginResponseBody responseBody = new LoginResponseBody();
         responseBody.setToken(token);
