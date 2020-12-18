@@ -9,7 +9,7 @@ public class Credentials {
     @Size(min = 8, message = "password must be at least eight characters")
     private String password;
     @NotNull
-    @Size(min = 5, message = "username must be at least five characters")
+    @Size(min = 3, message = "username must be at least three characters")
     private String username;
 
     public Credentials() {
