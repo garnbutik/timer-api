@@ -34,7 +34,7 @@ public class AuthFilter implements ContainerRequestFilter {
         String header = context.getHeaderString(HttpHeaders.AUTHORIZATION);
 
         if (header == null || !header.startsWith("Bearer ")) {
-            context.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+            context.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("not authorized").build());
             logger.info("No Authorization header provided");
             return;
         }
@@ -55,7 +55,7 @@ public class AuthFilter implements ContainerRequestFilter {
             return;
         }
         logger.warn(String.format("Unauthorized attempt to access time registrations by %s", user.getUsername()));
-        context.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
+        context.abortWith(Response.status(Response.Status.UNAUTHORIZED).entity("not authorized").build());
         return;
     }
 }
