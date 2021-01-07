@@ -16,7 +16,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
-@Path("time")
+@Path("users/{username}/time")
 public class TimeRegistrationController {
 
     @Inject
@@ -29,7 +29,6 @@ public class TimeRegistrationController {
     private LocalDateConverter dateConverter;
 
     @POST
-    @Path("{username}/")
     @Secured
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -46,7 +45,6 @@ public class TimeRegistrationController {
     }
 
     @GET
-    @Path("{username}")
     @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTimeRegistrationsByUsername(
@@ -61,15 +59,8 @@ public class TimeRegistrationController {
         return Response.ok(responseBodyList).build();
     }
 
-//    @PATCH
-//    @Path("{username}/{timeRegID}")
-//    @Secured
-//    public Response updateTimeRegistration()
-
-
-
     @DELETE
-    @Path("{username}/{timeRegID}")
+    @Path("{timeRegID}")
     @Secured
     public Response deleteTimeRegistration(@PathParam("timeRegID") Long id) {
         userService.deleteTimeRegistration(id);

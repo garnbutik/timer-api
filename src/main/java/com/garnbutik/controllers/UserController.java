@@ -13,7 +13,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 
-@Path("users")
+@Path("users/{username}")
 public class UserController {
 
     @Inject
@@ -39,7 +39,6 @@ public class UserController {
     }
 
     @GET
-    @Path("{username}")
     @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@PathParam("username") String username) {
@@ -48,7 +47,6 @@ public class UserController {
     }
 
     @PATCH
-    @Path("{username}")
     @Secured
     @Produces(MediaType.APPLICATION_JSON)
     public Response patchUser(@PathParam("username") String id, String jsonPatch, @Context UriInfo uriInfo) {
