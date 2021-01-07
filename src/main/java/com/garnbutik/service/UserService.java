@@ -20,8 +20,6 @@ import javax.json.JsonStructure;
 import javax.json.JsonValue;
 import javax.transaction.Transactional;
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
