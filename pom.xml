@@ -145,6 +145,7 @@
         <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
         <io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>
         <slf4j.version>1.7.30</slf4j.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>
