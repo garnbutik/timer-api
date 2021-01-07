@@ -14,7 +14,7 @@ public class LoginExceptionMapper implements ExceptionMapper<LoginException> {
 
     @Override
     public Response toResponse(LoginException e) {
-        CustomExceptionResponseBody responseBody = new CustomExceptionResponseBody
+        ApiError responseBody = new ApiError
                 .Builder()
                 .statusCode(401)
                 .withTimeStamp()

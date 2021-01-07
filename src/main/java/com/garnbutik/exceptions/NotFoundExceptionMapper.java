@@ -15,8 +15,8 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
 
     @Override
     public Response toResponse(NotFoundException e) {
-        CustomExceptionResponseBody responseBody =
-                new CustomExceptionResponseBody.Builder()
+        ApiError responseBody =
+                new ApiError.Builder()
                     .path(uriInfo.getAbsolutePath().toString())
                     .errorMessage(e.getLocalizedMessage())
                     .statusCode(404)

@@ -15,7 +15,7 @@ public class BadRequestExceptionMapper implements ExceptionMapper<BadRequestExce
 
     @Override
     public Response toResponse(BadRequestException e) {
-        CustomExceptionResponseBody responseBody = new CustomExceptionResponseBody
+        ApiError responseBody = new ApiError
                 .Builder()
                 .statusCode(400)
                 .errorMessage(e.getLocalizedMessage())
